@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FX SMP | Minecraft Server</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:white;background:#020806;overflow-x:hidden}
+canvas{position:fixed;inset:0;z-index:-2}
+body:after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 50% 10%,#174c28aa,transparent 35%),linear-gradient(#02080699,#020806)}
+nav{position:fixed;top:0;width:100%;z-index:5;padding:18px 7%;display:flex;justify-content:space-between;background:#020806bb;backdrop-filter:blur(12px);border-bottom:1px solid #4de87433}
+.logo{font-weight:900;font-size:22px;letter-spacing:2px}.logo span{color:#58ed78}
+nav a{color:#ddd;text-decoration:none;margin-left:25px;font-weight:bold}nav a:hover{color:#65ef83}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 20px 70px}
+.tag{display:inline-block;padding:10px 16px;border:1px solid #55ed7a66;border-radius:30px;color:#76f493;background:#3fe66d12;animation:pulse 2s infinite}
+h1{font-size:clamp(55px,10vw,110px);margin:25px 0;line-height:.95;animation:float 4s ease-in-out infinite;text-shadow:0 0 30px #35d85a55}
+h1 span{color:#5cee7c}.hero p{max-width:680px;margin:auto;color:#b8c7bd;font-size:19px;line-height:1.7}
+.buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{padding:15px 23px;border-radius:12px;font-weight:900;text-decoration:none;border:0;cursor:pointer;transition:.25s}
+.primary{background:#5be979;color:#031008;box-shadow:0 0 25px #4ee87333}.secondary{background:#0b1b10;color:white;border:1px solid #45684d}
+.btn:hover{transform:translateY(-4px)}
+section{padding:90px 7%}.container{max-width:1100px;margin:auto}
+.title{text-align:center;font-size:38px;margin-bottom:38px}.title span{color:#60ec7f}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.panel,.card{background:#092013dd;border:1px solid #56e9772b;border-radius:20px;padding:30px;box-shadow:0 20px 50px #0005;transition:.3s}
+.panel:hover,.card:hover{transform:translateY(-7px);border-color:#5ae97a88}
+.server{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.status{color:#72f18d;font-weight:800}.dot{display:inline-block;width:10px;height:10px;background:#5bea79;border-radius:50%;box-shadow:0 0 12px #5bea79;margin-right:7px}
+.time{font-size:clamp(35px,5vw,54px);font-weight:900;margin:20px 0 8px}
+.muted,.card p{color:#adbbb1;line-height:1.6}
+.ip{margin:20px 0;padding:20px;background:#020805;border-radius:12px;color:#72ef8c;font:22px monospace;text-align:center;word-break:break-all}
+.copy{width:100%}.icon{font-size:36px;margin-bottom:15px}.card h3{color:#75ef90;margin-bottom:10px}
+.step{display:flex;gap:18px;margin:18px 0;align-items:flex-start}.num{min-width:44px;height:44px;border-radius:12px;background:#5be979;color:#031008;display:grid;place-items:center;font-weight:900}
+footer{text-align:center;padding:40px 20px;border-top:1px solid #ffffff12;color:#89978e}
+.reveal{opacity:0;transform:translateY(30px);transition:.8s}.reveal.show{opacity:1;transform:none}
+@keyframes float{50%{transform:translateY(-10px)}}@keyframes pulse{50%{box-shadow:0 0 30px #55ed7a22}}
+@media(max-width:800px){nav div:last-child{display:none}.grid,.server{grid-template-columns:1fr}section{padding:65px 5%}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<nav><div class="logo">⚔ <span>FX</span> SMP</div><div><a href="#server">SERVER</a><a href="#features">FEATURES</a><a href="#join">JOIN</a></div></nav>
+
+<header class="hero">
+<div>
+<div class="tag">🟢 JAVA EDITION • INDIA</div>
+<h1>FX <span>SMP</span></h1>
+<p>Survive, build, explore and create your own story on the FX SMP Minecraft Java server.</p>
+<div class="buttons"><a class="btn primary" href="#join">⚔ JOIN THE SMP</a><a class="btn secondary" href="#server">SERVER INFO ↓</a></div>
+</div>
+</header>
+
+<section id="server"><div class="container reveal"><h2 class="title">SERVER <span>INFO</span></h2>
+<div class="server">
+<div class="panel"><div class="status"><span class="dot"></span> OPENING EVERY DAY</div><div class="time">4:00 PM – 9:30 PM</div><p class="muted">🇮🇳 Indian Standard Time (IST)</p><p class="muted">Join during the opening hours and start your adventure.</p></div>
+<div class="panel"><div class="status">🎮 JAVA SERVER</div><div class="ip">fx_smp.aternos.me</div><button class="btn primary copy" onclick="copyIP()">📋 COPY SERVER IP</button><p id="msg" class="muted" style="text-align:center;margin-top:12px"></p></div>
+</div></div></section>
+
+<section id="features"><div class="container reveal"><h2 class="title">WHY PLAY <span>FX SMP?</span></h2>
+<div class="grid"><div class="card"><div class="icon">🌲</div><h3>Survival</h3><p>Gather resources, build your base and survive in a multiplayer world.</p></div>
+<div class="card"><div class="icon">🏰</div><h3>Build</h3><p>Create houses, farms, castles and anything you can imagine.</p></div>
+<div class="card"><div class="icon">⚔️</div><h3>Adventure</h3><p>Explore the world, meet players and make your own SMP stories.</p></div></div>
+</div></section>
+
+<section id="join"><div class="container reveal"><h2 class="title">HOW TO <span>JOIN</span></h2><div class="panel">
+<div class="step"><div class="num">1</div><div><h3>Open Minecraft Java</h3><p class="muted">Open Multiplayer.</p></div></div>
+<div class="step"><div class="num">2</div><div><h3>Add FX SMP</h3><p class="muted">Enter <b>fx_smp.aternos.me</b> as the server address.</p></div></div>
+<div class="step"><div class="num">3</div><div><h3>Play!</h3><p class="muted">Join between <b>4:00 PM and 9:30 PM IST</b>.</p></div></div>
+</div></div></section>
+
+<section><div class="container reveal"><h2 class="title">SERVER <span>RULES</span></h2><div class="grid">
+<div class="card"><div class="icon">🤝</div><h3>Respect</h3><p>No harassment, bullying or toxic behavior.</p></div>
+<div class="card"><div class="icon">🚫</div><h3>No Griefing</h3><p>Do not destroy or steal from other players.</p></div>
+<div class="card"><div class="icon">🛡️</div><h3>Fair Play</h3><p>No cheats, hacked clients or unfair exploits.</p></div>
+</div></div></section>
+
+<footer><b>⚔ FX SMP</b> • Minecraft Java Server<br><small>© 2026 FX SMP • Not affiliated with Mojang or Microsoft.</small></footer>
+
+<script>
+function copyIP(){navigator.clipboard.writeText("fx_smp.aternos.me").then(()=>msg.textContent="✓ IP copied!").catch(()=>msg.textContent="fx_smp.aternos.me")}
+const obs=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("show")),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
+const c=document.getElementById("fx"),x=c.getContext("2d");let w,h,p=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight;p=Array.from({length:70},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+.5,v:Math.random()*.5+.1}))}
+function draw(){x.clearRect(0,0,w,h);p.forEach(a=>{a.y+=a.v;if(a.y>h)a.y=0;x.fillStyle="#69ef8777";x.beginPath();x.arc(a.x,a.y,a.r,0,7);x.fill()});requestAnimationFrame(draw)}
+onresize=resize;resize();draw();
+</script>
+</body></html>
